@@ -1981,12 +1981,18 @@ body {
             <span id="current-theme-label">黑体</span>
             <span class="toolbar-caret">⌄</span>
           </summary>
-          <div class="toolbar-popover toolbar-theme-options">
-            <button id="btn-theme-a" class="toolbar-btn toolbar-btn-active" title="风格 A：黑体">黑体</button>
-            <button id="btn-theme-b" class="toolbar-btn" title="风格 B：宋体">宋体</button>
-            <button id="btn-theme-c" class="toolbar-btn" title="风格 C：思源宋体">思源</button>
-            <button id="btn-theme-d" class="toolbar-btn" title="风格 D：蓝黑学术简历">学术</button>
-          </div>
+          <style>
+/* 临时内联样式修正下拉框宽度以容纳6个按钮 */
+.toolbar-theme-options { grid-template-columns: repeat(3, 72px) !important; width: 225px !important; }
+</style>
+<div class="toolbar-popover toolbar-theme-options">
+  <button id="btn-theme-a" class="toolbar-btn toolbar-btn-active" title="风格 A：黑体">黑体</button>
+  <button id="btn-theme-b" class="toolbar-btn" title="风格 B：宋体">宋体</button>
+  <button id="btn-theme-c" class="toolbar-btn" title="风格 C：思源宋体">思源</button>
+  <button id="btn-theme-d" class="toolbar-btn" title="风格 D：蓝黑学术简历">学术</button>
+  <button id="btn-theme-e" class="toolbar-btn" title="风格 E：英文学术">英文</button>
+  <button id="btn-theme-f" class="toolbar-btn" title="风格 F：蓝色专业">专业</button>
+</div>
         </details>
       </div>
       <div class="toolbar-group toolbar-typesetting">
