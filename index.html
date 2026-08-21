@@ -1510,7 +1510,93 @@ body {
   content: "•"; left: 0.5mm; font-size: 7pt;
   font-family: "Times New Roman", serif;
 }
+/* ========================
+   STYLE E — 英文学术简历 (源自文件2)
+   ======================== */
+#resume-page[data-theme="e"] {
+  --page-padding-top: 18mm; --page-padding-bottom: 18mm;
+  --page-padding-left: 18mm; --page-padding-right: 18mm;
+  --section-gap: 2.5mm; --entry-gap: 1.5mm; --bullet-gap: 0.5mm;
+  --font-size-body: 10pt; --font-size-small: 10.5pt; --font-size-name: 24pt;
+  --font-size-section-title: 12pt; --font-size-entry-name: 10.5pt;
+  --font-size-headline: 12pt; --font-size-contact: 9.5pt;
+  --color-text: #111; --color-muted: #444; --color-divider: #000;
+  --photo-w: 0mm; --photo-h: 0mm;
+}
+#resume-page[data-theme="e"] #resume-content {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.45;
+}
+#resume-page[data-theme="e"] #resume-header {
+  display: block; margin-bottom: 5mm; border-bottom: none;
+}
+#resume-page[data-theme="e"] #header-info { text-align: center; padding: 0; }
+#resume-page[data-theme="e"] #profile-name {
+  font-weight: bold; letter-spacing: 1px; margin-bottom: 2mm; display: block;
+}
+#resume-page[data-theme="e"] #profile-headline {
+  font-style: italic; color: #444; margin-bottom: 3mm; display: block;
+}
+#resume-page[data-theme="e"] #photo-container { display: none !important; }
+#resume-page[data-theme="e"] .section-title {
+  text-transform: uppercase; font-weight: bold;
+  border-bottom: 2px solid var(--color-divider);
+  padding-bottom: 1mm; margin-bottom: 3mm; letter-spacing: 0.5px;
+}
+#resume-page[data-theme="e"] .entry-header {
+  display: grid;
+  grid-template-areas: "name date" "role role";
+  align-items: baseline; justify-content: space-between; margin-bottom: 1.5mm;
+}
+#resume-page[data-theme="e"] .entry-left { display: contents; }
+#resume-page[data-theme="e"] .entry-name { grid-area: name; font-weight: bold; justify-self: start; }
+#resume-page[data-theme="e"] .entry-date-location { grid-area: date; font-weight: normal; color: #555; justify-self: end; }
+#resume-page[data-theme="e"] .entry-role { grid-area: role; font-style: italic; color: #444; font-weight: normal; justify-self: start; margin-top: 1mm; }
+#resume-page[data-theme="e"] .bullet-item::before { content: "•"; top: calc(var(--font-size-body) * 0.71); transform: translateY(-50%); }
 
+/* ========================
+   STYLE F — 蓝色中文专业简历 (源自文件3)
+   ======================== */
+#resume-page[data-theme="f"] {
+  --page-padding-top: 15mm; --page-padding-bottom: 15mm;
+  --page-padding-left: 18mm; --page-padding-right: 18mm;
+  --section-gap: 3mm; --entry-gap: 2mm; --bullet-gap: 0.5mm;
+  --font-size-body: 10.5pt; --font-size-small: 10.5pt; --font-size-name: 26pt;
+  --font-size-section-title: 11pt; --font-size-entry-name: 10.5pt;
+  --color-text: #333; --color-theme: #3b73b9;
+  --photo-w: 24mm; --photo-h: 32mm;
+}
+#resume-page[data-theme="f"] #resume-content {
+  font-family: 'SimHei', 'Microsoft YaHei', sans-serif;
+  line-height: 1.5; color: var(--color-text);
+}
+#resume-page[data-theme="f"] #resume-header {
+  display: grid; grid-template-columns: minmax(0, 1fr) var(--photo-w);
+  align-items: flex-start; margin-bottom: 5mm; border: none;
+}
+#resume-page[data-theme="f"] #header-info { text-align: left; padding: 0; grid-column: 1; }
+#resume-page[data-theme="f"] #profile-name { letter-spacing: 2px; text-align: left; color: #000; margin-bottom: 4mm;}
+#resume-page[data-theme="f"] #profile-headline { display: none; }
+#resume-page[data-theme="f"] #contact-info { justify-content: flex-start; flex-wrap: wrap; }
+#resume-page[data-theme="f"] .contact-item + .contact-item::before { content: " | "; color: #999; }
+#resume-page[data-theme="f"] #photo-container {
+  grid-column: 2; width: var(--photo-w); height: var(--photo-h);
+  background-color: #f5f7fa; border: 1px solid #dcdfe6; position: relative;
+}
+#resume-page[data-theme="f"] .section-title {
+  background-color: var(--color-theme); color: white;
+  padding: 1.5mm 4mm; display: inline-block; width: max-content;
+  border-bottom: none; margin-bottom: 3mm; font-weight: bold;
+}
+#resume-page[data-theme="f"] .entry-header {
+  display: grid; grid-template-columns: 22% 53% 25%;
+  align-items: baseline; margin-bottom: 1.5mm; color: #000;
+}
+#resume-page[data-theme="f"] .entry-left { display: contents; }
+#resume-page[data-theme="f"] .entry-date-location { grid-column: 1; font-weight: bold; justify-self: start; color: #333; }
+#resume-page[data-theme="f"] .entry-name { grid-column: 2; font-weight: bold; justify-self: start; }
+#resume-page[data-theme="f"] .entry-role { grid-column: 3; font-weight: normal; color: #333; justify-self: end; }
+#resume-page[data-theme="f"] .bullet-item::before { content: "•"; }
 /* Product 1 is the shared geometry baseline; themes only supply visual tokens. */
 #resume-page[data-theme] {
   --page-padding-top: 7mm;
@@ -4102,7 +4188,7 @@ function renderResume(state) {
 function getTheme() {
   const page = document.getElementById("resume-page");
   const t = page && page.dataset.theme;
-  return (t === "b" || t === "c" || t === "d") ? t : "a";
+  return (t === "b" || t === "c" || t === "d" || t === "e" || t === "f") ? t : "a";
 }
 
 function getPortfolioContact(value) {
@@ -8116,22 +8202,27 @@ function initThemeSwitcher() {
   const btnB = document.getElementById("btn-theme-b");
   const btnC = document.getElementById("btn-theme-c");
   const btnD = document.getElementById("btn-theme-d");
+  const btnE = document.getElementById("btn-theme-e"); // 新增
+  const btnF = document.getElementById("btn-theme-f"); // 新增
   const themeLabel = document.getElementById("current-theme-label");
   const themeMenu = document.getElementById("theme-menu");
   const page = document.getElementById("resume-page");
-  if (!btnA || !btnB || !page) return;
+  if (!btnA || !page) return;
 
   function setTheme(theme) {
     page.dataset.theme = theme;
-    btnA.classList.toggle("toolbar-btn-active", theme === "a");
-    btnB.classList.toggle("toolbar-btn-active", theme === "b");
+    if (btnA) btnA.classList.toggle("toolbar-btn-active", theme === "a");
+    if (btnB) btnB.classList.toggle("toolbar-btn-active", theme === "b");
     if (btnC) btnC.classList.toggle("toolbar-btn-active", theme === "c");
     if (btnD) btnD.classList.toggle("toolbar-btn-active", theme === "d");
+    if (btnE) btnE.classList.toggle("toolbar-btn-active", theme === "e");
+    if (btnF) btnF.classList.toggle("toolbar-btn-active", theme === "f");
+    
     if (themeLabel) {
-      themeLabel.textContent = { a: "黑体", b: "宋体", c: "思源", d: "学术" }[theme];
+      themeLabel.textContent = { a: "黑体", b: "宋体", c: "思源", d: "学术", e: "英文", f: "专业" }[theme];
     }
     if (themeMenu) themeMenu.open = false;
-    // Re-render header to reflect theme-specific contact format
+    
     const state = getState();
     if (typeof applyPhotoFrameSize === "function") applyPhotoFrameSize(state.photo);
     if (state.sections && state.sections.length > 0) {
@@ -8139,10 +8230,12 @@ function initThemeSwitcher() {
     }
   }
 
-  btnA.addEventListener("click", () => setTheme("a"));
-  btnB.addEventListener("click", () => setTheme("b"));
+  if (btnA) btnA.addEventListener("click", () => setTheme("a"));
+  if (btnB) btnB.addEventListener("click", () => setTheme("b"));
   if (btnC) btnC.addEventListener("click", () => setTheme("c"));
   if (btnD) btnD.addEventListener("click", () => setTheme("d"));
+  if (btnE) btnE.addEventListener("click", () => setTheme("e"));
+  if (btnF) btnF.addEventListener("click", () => setTheme("f"));
 }
 
 function initToolbarMenus() {
